@@ -1,0 +1,63 @@
+//Desktop and Tablet
+.form {
+  position: initial;
+  visibility: visible;
+  margin-top:17px;
+  .usernameLabel,.passwordLabel {
+    padding-left:5px
+  }
+  .usernameInput,.passwordInput {
+    border:1px solid black;
+    border-radius: 8px;
+    width:340px;
+    padding:14px 20px;
+    margin:6px 0 20px 0;
+
+  }
+
+  .passwordInputContainer {
+    display: flex;
+
+    .showPasswordContainer, .showPasswordContainer i {
+      position: absolute;
+      left:80%;
+      top:65.5%
+    }
+
+  }
+
+
+  .signInBtn {
+    width:340px;
+    text-align: center;
+    color:white;
+    background-color: #06d004;
+    border-radius: 8px;
+    padding:14px 130px;
+    font-weight: bold;
+  }
+  .signInBtn:hover {
+    background-color: yellow;
+    color: black;
+    border:1px solid #dcd9d9;
+  }
+
+}
+
+
+
+//Mobile
+@media screen and (max-width: 426px) {
+  .form {
+    position: absolute;
+    visibility: hidden;
+  }
+}
+
+
+
+
+
+
+
+

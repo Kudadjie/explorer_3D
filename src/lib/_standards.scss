@@ -1,0 +1,23 @@
+@mixin TabletOrDesktopLoginStyles() {
+  .background {
+    filter: none;
+    border:none;
+  }
+  .container {
+    align-items: start;
+    padding: 35px 47px 40px 47px;
+    width:430px;
+    .warningIcon,.warningText,.logoBottom {
+      position: absolute;
+      visibility: hidden;
+    }
+
+    .logoTop {
+      position: initial;
+      visibility: visible;
+      width:340px;
+    }
+
+
+  }
+}
