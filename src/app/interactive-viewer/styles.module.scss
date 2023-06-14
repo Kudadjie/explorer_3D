@@ -2,49 +2,77 @@
 .form {
   position: initial;
   visibility: visible;
-  margin-top:17px;
-  .usernameLabel,.passwordLabel {
-    padding-left:5px
+  margin-top: 17px;
+  .emailLabel,
+  .passwordLabel {
+    padding-left: 5px;
   }
-  .usernameInput,.passwordInput {
-    border:1px solid black;
+  .emailInput,
+  .passwordInput {
+    border: 1px solid black;
     border-radius: 8px;
-    width:340px;
-    padding:14px 20px;
-    margin:6px 0 20px 0;
+    width: 340px;
+    padding: 14px 20px;
+    margin: 6px 0 20px 0;
+  }
 
+  .passwordInput {
+    margin-bottom: 5px;
   }
 
   .passwordInputContainer {
     display: flex;
 
-    .showPasswordContainer, .showPasswordContainer i {
+    .showPasswordContainer,
+    .showPasswordContainer i {
       position: absolute;
-      left:80%;
-      top:65.5%
+      left: 80%;
+      top: 57.5%;
     }
-
   }
 
-
   .signInBtn {
-    width:340px;
+    width: 340px;
     text-align: center;
-    color:white;
+    color: white;
     background-color: #06d004;
     border-radius: 8px;
-    padding:14px 130px;
+    border: 1px solid transparent;
+    padding: 14px 130px;
     font-weight: bold;
+    margin-top: 30px;
   }
   .signInBtn:hover {
     background-color: yellow;
     color: black;
-    border:1px solid #dcd9d9;
+    border: 1px solid #dcd9d9;
   }
 
+  .forgotPassword {
+    text-decoration: underline;
+    font-size: 12px;
+    margin-left: 5px;
+  }
+
+  .forgotPassword:hover {
+    cursor: pointer;
+    color: grey;
+  }
+
+  .pageInfo {
+    margin-top: 25px;
+    font-size: 16px;
+    text-align: center;
+
+    a {
+      text-decoration: underline;
+    }
+    a:hover {
+      cursor: pointer;
+      color: grey;
+    }
+  }
 }
-
-
 
 //Mobile
 @media screen and (max-width: 426px) {
@@ -53,11 +81,3 @@
     visibility: hidden;
   }
 }
-
-
-
-
-
-
-
-
