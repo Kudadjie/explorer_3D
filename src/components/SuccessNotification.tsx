@@ -1,7 +1,7 @@
 import styles from "./Notifications.module.scss";
 export const SuccessNotification = () => {
   return (
-    <div className={styles.errorBar}>
+    <div className={styles.Bar}>
       <i
         className="fa-solid fa-circle-exclamation fa-lg"
         style={{ color: "#2bcb20" }}

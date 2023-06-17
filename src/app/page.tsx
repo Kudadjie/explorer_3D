@@ -6,18 +6,19 @@ import warningIcon from "../assets/warning-icon.svg";
 import logo from "../assets/logo/logo.svg";
 import desktopBackground from "../assets/Hero and Backdrop/hero-desktop.svg";
 import Form from "@/components/Form";
-import ErrorNotification from "@/components/ErrorNotification";
+import { ErrorNotification } from "@/components/ErrorNotification";
 import { Modal } from "@/components/Modal";
 import { ForgotPasswordForm } from "@/components/ForgotPasswordForm";
 import { SuccessNotification } from "@/components/SuccessNotification";
 
 export default function Home() {
   const placeholderBackgroundRef = React.useRef<HTMLDivElement>(null);
+  // const [show, setShow] = useState(false);
 
   const size = displayBackground(useWindowSize());
   return (
     <main className={styles.main}>
-      {/* <ErrorNotification /> */}
+      {/* {show && <ErrorNotification message={"Invalid Email or password"} />} */}
       {/* <SuccessNotification /> */}
       {/* <Modal>
         <ForgotPasswordForm />
@@ -35,7 +36,6 @@ export default function Home() {
                 placeholderBackgroundRef.current.className +
                 " " +
                 styles.removePlaceholder;
-              console.log("done loading");
             }}
           />
         )}
@@ -58,6 +58,17 @@ export default function Home() {
           again.
         </p>
         <Form />
+        {/* <button
+          onClick={() => {
+            setShow(true);
+
+            setTimeout(() => {
+              setShow(false);
+            }, 5000);
+          }}
+        >
+          Click
+        </button> */}
         <Image
           src={logo}
           className={styles.logoBottom}

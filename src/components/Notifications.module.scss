@@ -1,4 +1,4 @@
-.errorBar {
+.Bar {
   position: absolute;
   background-color: white;
   border-radius: 8px;
@@ -12,3 +12,42 @@
     padding-left: 10px;
   }
 }
+
+// //Transitions
+// @keyframes moveInL {
+//   0% {
+//     transform: translate(-1000%, 0);
+//   }
+//   100% {
+//     transform: translate(0%, 0);
+//   }
+// }
+
+// @keyframes moveOutL {
+//   0% {
+//     transform: translate(0%, 0);
+//   }
+//   100% {
+//     transform: translateX(-1000%);
+//   }
+// }
+
+// .inL {
+//   animation-name: moveInL;
+//   animation-duration: 1.5s;
+//   animation-iteration-count: 1;
+//   //4th digit 1.1 - make a larger num for bigger bounce back.
+//   //too big will make the motion too quick.
+//   animation-timing-function: cubic-bezier(1, 1.1, 0, 1);
+//   animation-fill-mode: forwards;
+//   animation-delay: 0.5s;
+// }
+
+// .outL {
+//   animation-name: moveOutL;
+//   animation-duration: 1.5s;
+//   animation-iteration-count: 1;
+//   animation-timing-function: cubic-bezier(1, 1.1, 0, 1.1);
+//   animation-fill-mode: forwards;
+//   animation-delay: 0.5s;
+// }

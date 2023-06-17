@@ -1,15 +1,18 @@
 import styles from "./Notifications.module.scss";
-export default function ErrorNotification() {
+import React from "react";
+type ErrorNotificationPropTypes = {
+  message: string;
+};
+export const ErrorNotification: React.FC<ErrorNotificationPropTypes> = ({
+  message,
+}) => {
   return (
-    <div className={styles.errorBar}>
+    <div className={styles.Bar}>
       <i
         className="fa-solid fa-circle-exclamation fa-lg"
         style={{ color: "#e51f1f" }}
       ></i>
-      <span>An error occured. Please try again.</span>
-      {
-        //automatically remove after a while
-      }
+      <span>{message}</span>
     </div>
   );
-}
+};
