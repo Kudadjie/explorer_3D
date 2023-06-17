@@ -1,0 +1,20 @@
+.Backdrop {
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(3px) saturate(180%);
+  background-color: rgb(16 19 24 / 75%);
+  position: fixed;
+  z-index: 2000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Modal {
+  width: fit-content;
+  height: fit-content;
+  border-radius: 8px;
+  padding: 30px 50px 50px 50px;
+  background-color: white;
+  display: flex;
+}

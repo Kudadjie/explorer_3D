@@ -21,3 +21,16 @@
     }
   }
 }
+
+@mixin input() {
+  border: 1px solid black;
+  border-radius: 8px;
+  width: 340px;
+  padding: 14px 20px;
+  margin: 6px 0 20px 0;
+}
+
+@mixin textLink() {
+  text-decoration: underline;
+  font-size: 12px;
+}

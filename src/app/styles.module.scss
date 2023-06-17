@@ -43,7 +43,6 @@
     );
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff0086",endColorstr="#5614d9",GradientType=1);
     position: absolute;
-    animation: fadeOut 8s infinite alternate ease-in-out;
   }
 
   .backgroundImage {
@@ -91,6 +90,10 @@
   }
 }
 
+.removePlaceholder {
+  animation: fadeOut 8s 1 alternate ease-in-out;
+  animation-fill-mode: forwards;
+}
 //Tablet
 @media screen and (min-width: 426px) and (max-width: 1200px) {
   @include standards.TabletOrDesktopLoginStyles();

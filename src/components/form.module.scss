@@ -1,0 +1,107 @@
+@use "../lib/standards";
+//Desktop and Tablet
+.form {
+  position: initial;
+  visibility: visible;
+  margin-top: 17px;
+  .emailLabel,
+  .passwordLabel {
+    padding-left: 5px;
+  }
+  .emailInput,
+  .passwordInput {
+    @include standards.input;
+  }
+
+  .passwordInput {
+    margin-bottom: 5px;
+  }
+
+  .passwordInputContainer {
+    display: flex;
+
+    .showPasswordContainer,
+    .showPasswordContainer i {
+      position: absolute;
+      left: 80%;
+      top: 57.5%;
+    }
+  }
+}
+
+.forgotPassword {
+  @include standards.textLink();
+  margin-left: 5px;
+  &:hover {
+    cursor: pointer;
+    color: grey;
+  }
+}
+
+.pageInfo {
+  margin-top: 25px;
+  font-size: 16px;
+  text-align: center;
+
+  a {
+    text-decoration: underline;
+  }
+  a:hover {
+    cursor: pointer;
+    color: grey;
+  }
+}
+
+.button__text {
+  color: #ffffff;
+  transition: all 0.2s;
+}
+
+.button__loading .button__text {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.button__loading::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  border: 4px solid transparent;
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: button-loading-spinner 1s ease infinite;
+}
+
+@keyframes button-loading-spinner {
+  from {
+    transform: rotate(0turn);
+  }
+
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+//Mobile
+@media screen and (max-width: 426px) {
+  .form {
+    position: absolute;
+    visibility: hidden;
+  }
+}
+
+@keyframes button-loading-spinner {
+  from {
+    transform: rotate(0turn);
+  }
+
+  to {
+    transform: rotate(1turn);
+  }
+}

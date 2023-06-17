@@ -1,10 +1,12 @@
-import styles from "./styles.module.scss";
+import styles from "./form.module.scss";
+import "./loadingBtn.scss";
 import React, { useState } from "react";
 export default function Form() {
   const [isLoginPage, setIsLoginPage] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const passwordRef = React.useRef<HTMLInputElement>(null);
   const emailRef = React.useRef<HTMLInputElement>(null);
+  const BtnRef = React.useRef<HTMLButtonElement>(null);
 
   function togglePasswordReveal(value: boolean) {
     const type =
@@ -97,11 +99,39 @@ export default function Form() {
       {isLoginPage && <a className={styles.forgotPassword}>Forgot password?</a>}
       <br />
       <button
-        className={styles.signInBtn}
+        className="button"
+        ref={BtnRef}
         type="submit"
         style={!isLoginPage ? { marginTop: "15px" } : undefined}
+        onClick={() => {
+          //Check validation
+          //Attach loading styles
+          if (
+            BtnRef.current &&
+            emailRef.current?.validity.valid &&
+            passwordRef.current?.validity.valid
+          ) {
+            BtnRef.current.className =
+              BtnRef.current.className + " button--loading";
+          }
+
+          //do some backend check to authenticate
+          //if failed, show failure UI, ErrorNotification and Remove loading styles
+          //Remove after sometime
+
+          // setTimeout(() => {
+          //   if (BtnRef.current) {
+          //     BtnRef.current.className = BtnRef.current.className.replace(
+          //       new RegExp("(?:^|\\s)loading(?!\\S)"),
+          //       ""
+          //     );
+          //   }
+          // }, 5000);
+        }}
       >
-        {isLoginPage ? "Login" : "Sign Up"}
+        <span className="button__text">
+          {isLoginPage ? "Login" : "Sign Up"}
+        </span>
       </button>
 
       {isLoginPage ? (
