@@ -1,6 +1,6 @@
 import React from "react";
 import "./loading.module.scss";
-import "./ForgotPasswordForm.scss";
+import styles from "./ForgotPasswordForm.module.scss";
 import { useAppStore } from "@/store/useAppStore";
 type ForgotPasswordFormTypes = {};
 
@@ -16,16 +16,16 @@ export const ForgotPasswordForm: React.FC<ForgotPasswordFormTypes> = ({}) => {
     e.preventDefault();
   }
   return (
-    <form onSubmit={handleSubmit} className="forgotPasswordForm">
+    <form onSubmit={handleSubmit} className={styles.forgotPasswordForm}>
       <p
-        className="returnToLoginTextLink"
+        className={styles.returnToLoginTextLink}
         onClick={() => {
           toggleForgotPwdModal(false);
         }}
       >
         Remember your Password?
       </p>
-      <p className="infoText">
+      <p className={styles.infoText}>
         Fill in your email below to request a new password. An email will be
         <br />
         sent to the address below containing a link to verify your email address
@@ -33,22 +33,21 @@ export const ForgotPasswordForm: React.FC<ForgotPasswordFormTypes> = ({}) => {
       <div>
         <input
           ref={forgotEmailRef}
-          className="input"
+          className={styles.input}
           type="email"
           placeholder="Enter your email"
           required
         />
         <button
-          className="button resetBtn"
+          className={styles.button}
           ref={BtnRef}
           type="submit"
           onClick={() => {
             //Check validation
             //Attach loading styles
-            console.log(forgotEmailRef.current?.validity);
             if (forgotEmailRef.current?.validity.valid && BtnRef.current) {
               BtnRef.current.className =
-                BtnRef.current.className + " button--loading";
+                BtnRef.current.className + " " + styles.button__loading;
             }
 
             //do some backend check to authenticate
@@ -56,13 +55,13 @@ export const ForgotPasswordForm: React.FC<ForgotPasswordFormTypes> = ({}) => {
             //Remove after sometime
           }}
         >
-          <span className="button__text">Reset Password</span>
+          <span className={styles.button__text}>Reset Password</span>
         </button>
       </div>
 
       <p>
         <a
-          className="registerAccountTextLink"
+          className={styles.registerAccountTextLink}
           onClick={() => {
             toggleForgotPwdModal(false);
             toggleLoginPage(false);

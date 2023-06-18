@@ -34,3 +34,68 @@
   text-decoration: underline;
   font-size: 12px;
 }
+
+@mixin loadingBtn(
+  $backgroundcolor,
+  $color,
+  $border-top-color,
+  $top,
+  $left,
+  $width,
+  $padding,
+  $margin-left,
+  $font-size
+) {
+  .button {
+    width: $width;
+    text-align: center;
+    color: $color;
+    background-color: $backgroundcolor;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: $padding;
+    margin-left: $margin-left;
+    font-weight: bold;
+    font-size: $font-size;
+    margin-top: 30px;
+
+    &:hover {
+      background-color: $backgroundcolor;
+    }
+
+    &__text {
+      color: $color;
+      transition: all 0.2s;
+    }
+    &__loading &__text {
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    &__loading::after {
+      content: "";
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      top: $top;
+      left: $left;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      border: 4px solid transparent;
+      border-top-color: $border-top-color;
+      border-radius: 50%;
+      animation: button-loading-spinner 1s ease infinite;
+    }
+  }
+
+  @keyframes button-loading-spinner {
+    from {
+      transform: rotate(0turn);
+    }
+
+    to {
+      transform: rotate(1turn);
+    }
+  }
+}

@@ -1,6 +1,5 @@
 import { useAppStore } from "@/store/useAppStore";
 import styles from "./form.module.scss";
-import "./loadingBtn.scss";
 import React, { useState } from "react";
 
 type formTypes = {};
@@ -117,7 +116,7 @@ export const Form: React.FC<formTypes> = ({}) => {
       )}
       <br />
       <button
-        className="button"
+        className={styles.button}
         ref={BtnRef}
         type="submit"
         style={!isLoginPage ? { marginTop: "15px" } : undefined}
@@ -130,7 +129,7 @@ export const Form: React.FC<formTypes> = ({}) => {
             passwordRef.current?.validity.valid
           ) {
             BtnRef.current.className =
-              BtnRef.current.className + " button--loading";
+              BtnRef.current.className + " " + styles.button__loading;
           }
 
           //do some backend check to authenticate
@@ -147,7 +146,7 @@ export const Form: React.FC<formTypes> = ({}) => {
           // }, 5000);
         }}
       >
-        <span className="button__text">
+        <span className={styles.button__text}>
           {isLoginPage ? "Login" : "Sign Up"}
         </span>
       </button>
