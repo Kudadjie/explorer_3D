@@ -1,9 +1,14 @@
 import React from "react";
 import "./loading.module.scss";
 import "./ForgotPasswordForm.scss";
+import { useAppStore } from "@/store/useAppStore";
 type ForgotPasswordFormTypes = {};
 
-export const ForgotPasswordForm: React.FC<ForgotPasswordFormTypes> = () => {
+export const ForgotPasswordForm: React.FC<ForgotPasswordFormTypes> = ({}) => {
+  const { toggleForgotPwdModal, toggleLoginPage } = useAppStore((state) => ({
+    toggleForgotPwdModal: state.toggleForgotPwdModal,
+    toggleLoginPage: state.toggleLoginPage,
+  }));
   const forgotEmailRef = React.useRef<HTMLInputElement>(null);
   const BtnRef = React.useRef<HTMLButtonElement>(null);
 
@@ -12,7 +17,14 @@ export const ForgotPasswordForm: React.FC<ForgotPasswordFormTypes> = () => {
   }
   return (
     <form onSubmit={handleSubmit} className="forgotPasswordForm">
-      <p className="returnToLoginTextLink">Remember your Password?</p>
+      <p
+        className="returnToLoginTextLink"
+        onClick={() => {
+          toggleForgotPwdModal(false);
+        }}
+      >
+        Remember your Password?
+      </p>
       <p className="infoText">
         Fill in your email below to request a new password. An email will be
         <br />
@@ -49,7 +61,15 @@ export const ForgotPasswordForm: React.FC<ForgotPasswordFormTypes> = () => {
       </div>
 
       <p>
-        <a className="registerAccountTextLink">Don&apos;t have an account?</a>
+        <a
+          className="registerAccountTextLink"
+          onClick={() => {
+            toggleForgotPwdModal(false);
+            toggleLoginPage(false);
+          }}
+        >
+          Don&apos;t have an account?
+        </a>
       </p>
     </form>
   );

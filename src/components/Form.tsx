@@ -1,8 +1,17 @@
+import { useAppStore } from "@/store/useAppStore";
 import styles from "./form.module.scss";
 import "./loadingBtn.scss";
 import React, { useState } from "react";
-export default function Form() {
-  const [isLoginPage, setIsLoginPage] = useState(true);
+
+type formTypes = {};
+export const Form: React.FC<formTypes> = ({}) => {
+  const { toggleForgotPwdModal, isLoginPage, toggleLoginPage } = useAppStore(
+    (state) => ({
+      toggleForgotPwdModal: state.toggleForgotPwdModal,
+      isLoginPage: state.isLoginPage,
+      toggleLoginPage: state.toggleLoginPage,
+    })
+  );
   const [showPassword, setShowPassword] = useState(false);
   const passwordRef = React.useRef<HTMLInputElement>(null);
   const emailRef = React.useRef<HTMLInputElement>(null);
@@ -96,7 +105,16 @@ export default function Form() {
           )}
         </div>
       </div>
-      {isLoginPage && <a className={styles.forgotPassword}>Forgot password?</a>}
+      {isLoginPage && (
+        <a
+          className={styles.forgotPassword}
+          onClick={() => {
+            toggleForgotPwdModal(true);
+          }}
+        >
+          Forgot password?
+        </a>
+      )}
       <br />
       <button
         className="button"
@@ -139,7 +157,7 @@ export default function Form() {
           Don&apos;t have an account yet?{" "}
           <a
             onClick={() => {
-              setIsLoginPage(false);
+              toggleLoginPage(false);
             }}
           >
             Sign up
@@ -150,7 +168,7 @@ export default function Form() {
           Already have an account?{" "}
           <a
             onClick={() => {
-              setIsLoginPage(true);
+              toggleLoginPage(true);
             }}
           >
             Login
@@ -159,4 +177,4 @@ export default function Form() {
       )}
     </form>
   );
-}
+};

@@ -5,24 +5,30 @@ import Image from "next/image";
 import warningIcon from "../assets/warning-icon.svg";
 import logo from "../assets/logo/logo.svg";
 import desktopBackground from "../assets/Hero and Backdrop/hero-desktop.svg";
-import Form from "@/components/Form";
+import { Form } from "@/components/Form";
 import { ErrorNotification } from "@/components/ErrorNotification";
 import { Modal } from "@/components/Modal";
 import { ForgotPasswordForm } from "@/components/ForgotPasswordForm";
 import { SuccessNotification } from "@/components/SuccessNotification";
+import { useAppStore } from "@/store/useAppStore";
 
 export default function Home() {
   const placeholderBackgroundRef = React.useRef<HTMLDivElement>(null);
-  // const [show, setShow] = useState(false);
 
+  const { forgotPwd } = useAppStore((state) => ({
+    forgotPwd: state.forgotPwd,
+  }));
   const size = displayBackground(useWindowSize());
+
   return (
     <main className={styles.main}>
       {/* {show && <ErrorNotification message={"Invalid Email or password"} />} */}
       {/* <SuccessNotification /> */}
-      {/* <Modal>
-        <ForgotPasswordForm />
-      </Modal> */}
+      {forgotPwd && (
+        <Modal>
+          <ForgotPasswordForm />
+        </Modal>
+      )}
       <div className={styles.background}>
         {(size === "desktop" || size === "tablet") && (
           <Image
@@ -58,17 +64,6 @@ export default function Home() {
           again.
         </p>
         <Form />
-        {/* <button
-          onClick={() => {
-            setShow(true);
-
-            setTimeout(() => {
-              setShow(false);
-            }, 5000);
-          }}
-        >
-          Click
-        </button> */}
         <Image
           src={logo}
           className={styles.logoBottom}
@@ -104,6 +99,7 @@ function useWindowSize(): windowSizeType {
   }, []);
   return windowSize;
 }
+
 function displayBackground(object: windowSizeType) {
   //mobile
   if (object.width >= 1200) {
