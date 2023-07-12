@@ -1,7 +1,7 @@
 import styles from "./Notifications.module.scss";
 import React from "react";
 type ErrorNotificationPropTypes = {
-  message: string;
+  message: any;
 };
 export const ErrorNotification: React.FC<ErrorNotificationPropTypes> = ({
   message,

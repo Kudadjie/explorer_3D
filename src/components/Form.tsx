@@ -1,20 +1,33 @@
+"use client";
 import { useAppStore } from "@/store/useAppStore";
 import styles from "./form.module.scss";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 
-type formTypes = {};
-export const Form: React.FC<formTypes> = ({}) => {
-  const { toggleForgotPwdModal, isLoginPage, toggleLoginPage } = useAppStore(
-    (state) => ({
-      toggleForgotPwdModal: state.toggleForgotPwdModal,
-      isLoginPage: state.isLoginPage,
-      toggleLoginPage: state.toggleLoginPage,
-    })
-  );
+export const Form: React.FC = ({}) => {
+  const {
+    toggleForgotPwdModal,
+    isLoginPage,
+    toggleLoginPage,
+    setUser,
+    toggleErrorNotification,
+    toggleSuccessNotification,
+    user,
+  } = useAppStore((state) => ({
+    toggleForgotPwdModal: state.toggleForgotPwdModal,
+    isLoginPage: state.isLoginPage,
+    toggleLoginPage: state.toggleLoginPage,
+    setUser: state.setUser,
+    toggleErrorNotification: state.toggleErrorNotification,
+    toggleSuccessNotification: state.toggleSuccessNotification,
+    user: state.user,
+  }));
   const [showPassword, setShowPassword] = useState(false);
   const passwordRef = React.useRef<HTMLInputElement>(null);
   const emailRef = React.useRef<HTMLInputElement>(null);
   const BtnRef = React.useRef<HTMLButtonElement>(null);
+
+  const router = useRouter();
 
   function togglePasswordReveal(value: boolean) {
     const type =
@@ -27,25 +40,99 @@ export const Form: React.FC<formTypes> = ({}) => {
 
   const handleLoginSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    /*
 
-        const response = await fetch('/api/login', {
-            method: 'POST',
+    if (emailRef.current && passwordRef.current) {
+      const response = await fetch("/api/login", {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: emailRef.current.value,
+          password: passwordRef.current.value,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.secureUserData) {
+        toggleSuccessNotification(true, "Success! Redirecting...");
+        setUser(data.secureUserData);
+
+        if (data.secureUserData.emailVerified) {
+          return router.push("/interactive-viewer");
+        } else {
+          const response = await fetch("/api/resendVerificationEmail", {
+            method: "POST",
+            mode: "cors",
             headers: {
-                'Content-Type': 'application/json',
+              "Content-Type": "application/json",
             },
-            body: JSON.stringify({
-                email: emailRef.current?.value,
-                password: passwordRef.current?.value,
-            }),
-        })
+            body: JSON.stringify({ user: user }),
+          });
+          console.log(response.json());
+          return router.push("/verify");
+        }
+      }
 
-        const result = await response.json()
-        console.log(result)*/
+      const errormessage = data.error.code;
+      toggleErrorNotification(true, errormessage);
+      setTimeout(() => {
+        toggleErrorNotification(false);
+      }, 5000);
+      toggleBtnLoading("off");
+    }
   };
 
-  const handleSignupSubmit = () => {};
+  const handleSignupSubmit = async (
+    event: React.FormEvent<HTMLFormElement>
+  ) => {
+    event.preventDefault();
 
+    if (emailRef.current && passwordRef.current) {
+      const response = await fetch("/api/signup", {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: emailRef.current.value,
+          password: passwordRef.current.value,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.secureUserData) {
+        toggleSuccessNotification(true, "Success! Redirecting...");
+        setUser(data.secureUserData);
+        return router.push("/verify");
+      }
+      const errormessage = data.error.message;
+      toggleErrorNotification(true, errormessage);
+      setTimeout(() => {
+        toggleErrorNotification(false);
+      }, 5000);
+      toggleBtnLoading("off");
+    }
+  };
+
+  function toggleBtnLoading(option: string) {
+    if (
+      BtnRef.current &&
+      emailRef.current?.validity.valid &&
+      passwordRef.current?.validity.valid
+    ) {
+      if (option === "on") {
+        BtnRef.current.classList.add(`${styles.button__loading}`);
+      }
+      if (option === "off") {
+        BtnRef.current.classList.remove(`${styles.button__loading}`);
+      }
+    }
+  }
   return (
     <form
       className={styles.form}
@@ -63,6 +150,7 @@ export const Form: React.FC<formTypes> = ({}) => {
         name="email"
         required
         placeholder="Enter your email"
+        autoComplete="email"
       />
       <br />
       <label htmlFor="password" className={styles.passwordLabel}>
@@ -121,29 +209,7 @@ export const Form: React.FC<formTypes> = ({}) => {
         type="submit"
         style={!isLoginPage ? { marginTop: "15px" } : undefined}
         onClick={() => {
-          //Check validation
-          //Attach loading styles
-          if (
-            BtnRef.current &&
-            emailRef.current?.validity.valid &&
-            passwordRef.current?.validity.valid
-          ) {
-            BtnRef.current.className =
-              BtnRef.current.className + " " + styles.button__loading;
-          }
-
-          //do some backend check to authenticate
-          //if failed, show failure UI, ErrorNotification and Remove loading styles
-          //Remove after sometime
-
-          // setTimeout(() => {
-          //   if (BtnRef.current) {
-          //     BtnRef.current.className = BtnRef.current.className.replace(
-          //       new RegExp("(?:^|\\s)loading(?!\\S)"),
-          //       ""
-          //     );
-          //   }
-          // }, 5000);
+          toggleBtnLoading("on");
         }}
       >
         <span className={styles.button__text}>

@@ -1,9 +1,8 @@
-import Loading from "@/components/Loading";
 import logo from "../../assets/logo/logo.svg";
 import Image from "next/image";
 import styles from "./styles.module.scss";
 
-export default function interactiveViewer() {
+export default function InteractiveViewer() {
   return (
     <div>
       {/* <Loading /> */}

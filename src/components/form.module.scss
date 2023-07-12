@@ -6,6 +6,8 @@
   margin-top: 17px;
   .emailLabel,
   .passwordLabel {
+    font-weight: 900;
+    letter-spacing: 1.5px;
     padding-left: 5px;
   }
   .emailInput,
@@ -62,7 +64,8 @@
   340px,
   14px 130px,
   0,
-  18px
+  18px,
+  #09f605
 );
 
 @keyframes button-loading-spinner {

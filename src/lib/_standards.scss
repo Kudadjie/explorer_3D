@@ -1,8 +1,4 @@
 @mixin TabletOrDesktopLoginStyles() {
-  .background {
-    filter: none;
-    border: none;
-  }
   .container {
     align-items: start;
     padding: 35px 47px 40px 47px;
@@ -15,9 +11,10 @@
     }
 
     .logoTop {
-      position: initial;
       visibility: visible;
       width: 340px;
+      position: relative;
+      left: 30px;
     }
   }
 }
@@ -44,7 +41,8 @@
   $width,
   $padding,
   $margin-left,
-  $font-size
+  $font-size,
+  $hoverColor
 ) {
   .button {
     width: $width;
@@ -60,7 +58,7 @@
     margin-top: 30px;
 
     &:hover {
-      background-color: $backgroundcolor;
+      background-color: $hoverColor;
     }
 
     &__text {
