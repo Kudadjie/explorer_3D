@@ -1,22 +1,25 @@
+"use client";
 import styles from "./styles.module.scss";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Background from "@/components/Background";
 import MobileView from "@/components/MobileView";
 import LoadingView from "@/components/LoadingView";
+import useIsMobileDevice from "@/lib/hooks/useIsMobileDevice";
 
 export default function Home() {
-  return (
-    <main className={styles.main}>
+  const { isMobile } = useIsMobileDevice();
+
+  const pageContent = (
+    <>
       <Background />
-      {/* render based on screen size */}
-      <div className={styles.container + " " + styles.mobileContainer}>
-        <MobileView />
-      </div>
-      <div
-        className={styles.container + " " + styles.desktopAndTabletContainer}
-      >
+      <div className={styles.container}>
         <LoadingView />
       </div>
+    </>
+  );
+  return (
+    <main className={styles.main}>
+      {isMobile ? <MobileView /> : pageContent}
     </main>
   );
 }
