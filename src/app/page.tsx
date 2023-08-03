@@ -1,6 +1,6 @@
 "use client";
 import styles from "./styles.module.scss";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Background from "@/components/Background";
 import MobileView from "@/components/MobileView";
 import LoadingView from "@/components/LoadingView";
