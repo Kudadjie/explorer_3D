@@ -1,0 +1,28 @@
+.logoTop {
+  width: 340px;
+  position: relative;
+  left: 30px;
+  margin-bottom: 80px;
+}
+
+.loadingAnimationBox {
+  width: 100px;
+  height: 100px;
+}
+
+.loadingStatusSection {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 20px;
+
+  .loading {
+    font-weight: bolder;
+    font-size: 17px;
+  }
+
+  .completed,
+  .openingProject {
+    font-size: 14px;
+  }
+}

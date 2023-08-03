@@ -1,4 +1,4 @@
-import logo from "../../assets/logo/logo.svg";
+import logo from "../../../public/assets/logo/logo.svg";
 import Image from "next/image";
 import styles from "./styles.module.scss";
 
