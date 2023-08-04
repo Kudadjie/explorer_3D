@@ -1,6 +1,7 @@
 "use client";
 import styles from "./styles.module.scss";
 import MobileView from "@/components/MobileView";
+import ToolBar from "@/components/Toolbar";
 import useIsMobileDevice from "@/lib/hooks/useIsMobileDevice";
 
 export default function InteractiveViewer() {
@@ -9,7 +10,7 @@ export default function InteractiveViewer() {
   const pageContent = (
     <div className={styles.canvasBackdrop}>
       <canvas className={styles.canvas}></canvas>
-      <div className={styles.toolbar}></div>
+      <ToolBar />
     </div>
   );
   //render page or invalid screen size page

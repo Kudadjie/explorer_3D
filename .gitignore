@@ -5,6 +5,7 @@
 /src/unused_components
 
 /.idea/
+/.vscode/
 # dependencies
 /node_modules
 /.pnp
