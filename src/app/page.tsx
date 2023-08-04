@@ -19,6 +19,7 @@ export default function Home() {
   );
 
   return (
+    //render page or invalid screen size page
     <main className={styles.main}>
       {isMobile ? <MobileView /> : pageContent}
     </main>

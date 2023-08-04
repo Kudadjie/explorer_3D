@@ -12,5 +12,6 @@ export default function InteractiveViewer() {
       <div className={styles.toolbar}></div>
     </div>
   );
+  //render page or invalid screen size page
   return <>{isMobile ? <MobileView /> : pageContent}</>;
 }

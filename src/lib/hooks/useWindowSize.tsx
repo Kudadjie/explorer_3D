@@ -4,6 +4,7 @@ type windowSizeType = {
   width: number;
   height: number;
 };
+//listen for resize events and update accordingly
 export default function useWindowSize(): windowSizeType {
   const [windowSize, setWindowSize] = useState({
     width: 0,
@@ -37,5 +38,6 @@ export function displayBackground(object: windowSizeType) {
   if (object.width <= 426 && object.width !== 0) {
     return "mobile";
   }
+  //curb initial 0 width
   return "0";
 }
