@@ -17,6 +17,7 @@ export default function Home() {
       </div>
     </>
   );
+
   return (
     <main className={styles.main}>
       {isMobile ? <MobileView /> : pageContent}
