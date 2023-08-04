@@ -33,7 +33,9 @@ export function displayBackground(object: windowSizeType) {
   }
   if (object.width >= 427 && object.width <= 1200) {
     return "tablet";
-  } else {
+  }
+  if (object.width <= 426 && object.width !== 0) {
     return "mobile";
   }
+  return "0";
 }
