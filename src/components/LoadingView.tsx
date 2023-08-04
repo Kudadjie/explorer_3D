@@ -14,16 +14,16 @@ export default function LoadingView() {
   const router = useRouter();
   //Simulate loading...
   setTimeout(() => {
-    setLoading(100);
+    // setLoading(100);
     triggerLoadingStatusNotification();
-  }, 5000);
+  }, 10000);
 
   function triggerLoadingStatusNotification() {
     setCompleted(true);
     setTimeout(() => {
       setOpeningProject(true);
       router.push("/interactive-viewer");
-    }, 3000);
+    }, 8000);
   }
   return (
     <>
