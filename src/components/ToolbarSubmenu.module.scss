@@ -1,8 +1,28 @@
 .toolbarSubmenu {
-  width: 195px;
-  height: 200px;
-  background-color: #2c3650;
+  width: 174px;
+  background-color: #242424;
   position: absolute;
   top: calc(30px + 65px);
   border-radius: 5px;
+
+  .dropdownMenuOption {
+    color: white;
+    font-size: 14px;
+    padding: 10px;
+
+    &:hover {
+      background-color: black;
+    }
+  }
+}
+
+@keyframes fade {
+  from {
+    transform: translateX(-200px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0px);
+    opacity: 1;
+  }
 }

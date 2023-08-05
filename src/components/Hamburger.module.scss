@@ -1,0 +1,31 @@
+.hamburger {
+  float: left;
+  transition: opacity 0.3s;
+  &:hover {
+    cursor: pointer;
+  }
+
+  .line {
+    width: 30px;
+    height: 3px;
+    background: white;
+    margin: 5px auto;
+    transition: all 0.3s ease-in-out;
+    border-radius: 5px;
+  }
+}
+
+.isactive .line:nth-child(2) {
+  opacity: 0;
+}
+.isactive .line:nth-child(1) {
+  transform: translateY(7.5px) rotate(45deg);
+  width: 25px;
+  height: 2px;
+}
+
+.isactive .line:nth-child(3) {
+  transform: translateY(-7.5px) rotate(-45deg);
+  width: 25px;
+  height: 2px;
+}
