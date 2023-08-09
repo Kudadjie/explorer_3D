@@ -13,10 +13,11 @@ export default function LoadingView() {
 
   const router = useRouter();
   //Simulate loading...
+
   setTimeout(() => {
-    // setLoading(100);
+    setLoading(100);
     triggerLoadingStatusNotification();
-  }, 10000);
+  }, 5000);
 
   function triggerLoadingStatusNotification() {
     setCompleted(true);
@@ -39,7 +40,7 @@ export default function LoadingView() {
       </div>
       <div className={styles.loadingStatusSection}>
         <p className={styles.loading} style={{ fontWeight: "bolder" }}>
-          Loading - 50%
+          Loading - {loading}%
         </p>
         {completed && (
           <p className={styles.completed}>
