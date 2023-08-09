@@ -1,0 +1,35 @@
+/* CSSTransition classes  */
+.menu-primary-enter {
+  position: absolute;
+  transform: translateX(-110%);
+
+  &-active {
+    transform: translateX(0%);
+    transition: all var(--speed) ease;
+  }
+}
+
+.menu-primary-exit {
+  position: absolute;
+
+  &-active {
+    transform: translateX(-110%);
+    transition: all var(--speed) ease;
+  }
+}
+
+.menu-secondary-enter {
+  transform: translateX(110%);
+
+  &-active {
+    transform: translateX(0%);
+    transition: all var(--speed) ease;
+  }
+}
+
+.menu-secondary-exit {
+  &-active {
+    transform: translateX(110%);
+    transition: all var(--speed) ease;
+  }
+}

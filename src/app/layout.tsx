@@ -1,8 +1,12 @@
 import "./globals.css";
-import { Inter } from "next/font/google";
+
+import { Heebo } from "next/font/google";
 import Script from "next/script";
 
-const inter = Inter({ subsets: ["latin"] });
+const heebo = Heebo({
+  weight: ["100", "300", "400", "700", "900"],
+  subsets: ["latin"],
+});
 
 export const metadata = {
   title: "3D Explorer",
@@ -16,8 +20,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <Script src="https://kit.fontawesome.com/6405d986fe.js" />
-      <body className={inter.className}>{children}</body>
+      <Script rel="preload" src="https://kit.fontawesome.com/6405d986fe.js" />
+      <body className={heebo.className}>{children}</body>
     </html>
   );
 }
