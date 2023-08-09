@@ -122,7 +122,7 @@ const DropdownMenu = () => {
           </DropdownItem>
           <hr></hr>
           <DropdownItem goToMenu="features and structures" icon={features}>
-            Features and Structures List
+            Features and Structures
           </DropdownItem>
           <hr></hr>
           <DropdownItem>Request Access to Project Files</DropdownItem>
