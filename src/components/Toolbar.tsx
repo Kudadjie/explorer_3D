@@ -86,6 +86,14 @@ const DropdownMenu = () => {
     <i className="fa-solid fa-hill-rockslide" style={{ color: " #ffffff" }}></i>
   );
 
+  const access = (
+    <i className="fa-solid fa-key" style={{ color: "#ffffff" }}></i>
+  );
+
+  const acknowledgement = (
+    <i className="fa-solid fa-user-graduate" style={{ color: "#ffffff" }}></i>
+  );
+
   interface navFootTypes {
     children: React.ReactNode;
   }
@@ -125,9 +133,9 @@ const DropdownMenu = () => {
             Features and Structures
           </DropdownItem>
           <hr></hr>
-          <DropdownItem>Request Access to Project Files</DropdownItem>
+          <DropdownItem icon={access}>Request Access to Files</DropdownItem>
           <hr></hr>
-          <DropdownItem>Acknowledgement</DropdownItem>
+          <DropdownItem icon={acknowledgement}>Acknowledgement</DropdownItem>
           <hr></hr>
           <Navfoot>Main Menu</Navfoot>
         </div>
