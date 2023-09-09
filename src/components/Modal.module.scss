@@ -1,23 +1,15 @@
-// .Backdrop {
-//   width: 100vw;
-//   height: 100vh;
-//   backdrop-filter: blur(3px) saturate(180%);
-//   background-color: #101318bf;
-//   position: fixed;
-//   z-index: 2000000000;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-// }
-
 .Modal {
   width: 350px;
-  height: 100vh;
-  background-color: #242424;
+  height: fit-content;
+  background-color: white;
   display: flex;
   justify-self: flex-end;
+  grid-row: 1/1;
+  align-self: flex-start;
+  margin: 35px;
   z-index: 9000000000000;
   transition: all 5ms ease-in-out;
+  box-shadow: rgb(210, 210, 210) 0px 4px 6px;
 }
 
 .modalInactive {

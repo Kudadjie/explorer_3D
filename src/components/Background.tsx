@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Image from "next/image";
 import desktopBackground from "../../public/assets/Hero and Backdrop/hero-desktop.svg";
 import styles from "./Background.module.scss";
