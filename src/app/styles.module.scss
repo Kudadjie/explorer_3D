@@ -4,7 +4,30 @@
   align-items: center;
   height: 100vh;
   width: 100vw;
-  box-sizing: border-box;
+  background: rgb(255, 0, 134);
+  background: -moz-linear-gradient(
+    49deg,
+    rgba(255, 0, 134, 1) 0%,
+    rgba(237, 22, 168, 1) 4%,
+    rgba(134, 22, 194, 1) 58%,
+    rgba(86, 20, 217, 1) 86%
+  );
+  background: -webkit-linear-gradient(
+    49deg,
+    rgba(255, 0, 134, 1) 0%,
+    rgba(237, 22, 168, 1) 4%,
+    rgba(134, 22, 194, 1) 58%,
+    rgba(86, 20, 217, 1) 86%
+  );
+  background: linear-gradient(
+    49deg,
+    rgba(255, 0, 134, 1) 0%,
+    rgba(237, 22, 168, 1) 4%,
+    rgba(134, 22, 194, 1) 58%,
+    rgba(86, 20, 217, 1) 86%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff0086",endColorstr="#5614d9",GradientType=1);
+  position: absolute;
 }
 
 .container {
@@ -18,5 +41,19 @@
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   align-items: flex-start;
   padding: 35px 47px 40px 47px;
-  width: 434px;
+  width: 80vw;
+}
+
+//tablet
+@media screen and (min-width: 426px) and (max-width: 1200px) {
+  .container {
+    width: 434px;
+  }
+}
+
+//Desktop
+@media screen and (min-width: 1200px) {
+  .container {
+    width: 434px;
+  }
 }

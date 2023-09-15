@@ -1,7 +1,6 @@
 .logoTop {
-  width: 340px;
+  width: 260px;
   position: relative;
-  left: 30px;
   margin-bottom: 80px;
 }
 
@@ -24,5 +23,27 @@
   .completed,
   .openingProject {
     font-size: 14px;
+  }
+}
+
+//much smaller screens?
+@media screen and (max-width: 320px) {
+  .logoTop {
+    width: 227px;
+  }
+}
+//tablet
+@media screen and (min-width: 426px) and (max-width: 1200px) {
+  .logoTop {
+    width: 340px;
+    left: 30px;
+  }
+}
+
+//Desktop
+@media screen and (min-width: 1200px) {
+  .logoTop {
+    width: 340px;
+    left: 30px;
   }
 }

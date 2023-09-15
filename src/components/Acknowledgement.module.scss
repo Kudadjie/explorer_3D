@@ -1,5 +1,4 @@
 .textSection {
-  width: 0;
   height: 620px;
   display: flex;
   flex-direction: column;
@@ -16,8 +15,8 @@
 
   & :nth-child(2) {
     margin: 0 35px;
-    position: absolute;
-    display: none;
+    margin: 0px 30px;
+    font-size: x-large;
   }
 
   & :nth-child(3) {
@@ -42,9 +41,10 @@
   }
 }
 
+//hide image. LOL - Mobile users won't get the experience!
 .thanksImage {
-  width: 0;
-  height: 0;
+  position: absolute;
+  display: none;
 }
 
 //tablet
@@ -57,10 +57,15 @@
     & :nth-child(2) {
       position: initial;
       display: block;
+
+      margin: 0 35px;
+      font-size: revert;
     }
   }
 
   .thanksImage {
+    position: initial;
+    display: initial;
     width: 340px;
     height: 480px;
   }
@@ -76,10 +81,14 @@
     & :nth-child(2) {
       position: initial;
       display: block;
+      margin: 0 35px;
+      font-size: revert;
     }
   }
 
   .thanksImage {
+    position: initial;
+    display: initial;
     width: 480px;
     height: 620px;
   }

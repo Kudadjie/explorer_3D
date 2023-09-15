@@ -20,10 +20,9 @@ export const useAppStore = create<AppState>()(
       open: false,
     },
     currentPin: {
-      open: true,
+      open: false,
 
-      content:
-        "Consectetur esse dolore dolor aute aliqua cupidatat duis id dolor. Eu nostrud aliqua proident ad dolore est ea veniam voluptate ut cupidatat in duis nisi. Sunt proident id enim quis irure est culpa laborum. Incididunt deserunt pariatur id minim aliquip proident magna. Consectetur esse dolore dolor aute aliqua cupidatat duis id dolor. Eu nostrud aliqua proident ad dolore est ea veniam voluptate ut cupidatat in duis nisi. Sunt proident id enim quis irure est culpa laborum. Incididunt deserunt pariatur id minim aliquip proident magna.",
+      content: "",
     },
 
     toggleCurrentPin: () =>

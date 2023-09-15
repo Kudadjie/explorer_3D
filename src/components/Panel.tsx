@@ -2,14 +2,7 @@
 import React, { useState } from "react";
 import styles from "./Panel.module.scss";
 import { useAppStore } from "@/store/useAppStore";
-import Draggable from "react-draggable";
 
-//types
-type PanelContainerProps = {
-  children: React.ReactNode;
-};
-
-//components
 export default function Panel() {
   const { toggleCurrentPin, PanelContent, panelOpened } = useAppStore(
     (state) => ({
@@ -20,8 +13,8 @@ export default function Panel() {
   );
 
   const [togglePanelIcon, setTogglePanelIcon] = useState({
-    open: true,
-    class: "fa-rotate-270",
+    open: false,
+    class: "fa-flip-vertical",
   });
 
   const hasContent = PanelContent ? true : false;
@@ -34,18 +27,15 @@ export default function Panel() {
   //     </div>
   //   );
   // };
+
   const Header = () => {
     return (
       <div className={styles.header}>
-        <i
-          className="fa-solid fa-grip-vertical fa-lg"
-          style={{ color: "#ffffff" }}
-        ></i>
-        <h4>Current Pin</h4>
+        <h4>Current View</h4>
         {/* <PanelItemTag /> */}
         <i
           className={
-            "fa-solid fa-angles-right fa-lg fa-rotate-90 " +
+            "fa-solid fa-angles-up fa-lg " +
             (togglePanelIcon.open && togglePanelIcon.class)
           }
           style={{ color: " #ffffff" }}
@@ -76,23 +66,13 @@ export default function Panel() {
       </div>
     );
   };
-  const PanelContainer: React.FC<PanelContainerProps> = ({ children }) => {
-    return (
-      <Draggable bounds="parent">
-        <div className={styles.panelContainer}>{children}</div>
-      </Draggable>
-    );
-  };
+
   const PanelItem = () => {
     const { PanelContent } = useAppStore((state) => ({
       PanelContent: state.currentPin.content,
     }));
     return (
-      <div
-        //Add if more content
-        //   style={{ overflowY: "scroll", scrollbarWidth: "thin" }}
-        className={styles.PanelItemContainer}
-      >
+      <div className={styles.PanelItemContainer}>
         <div className={styles.PanelText}>
           <p>{PanelContent}</p>
         </div>
@@ -102,9 +82,9 @@ export default function Panel() {
   const PanelView = hasContent ? <PanelItem /> : <EmptyPanel />;
 
   return (
-    <PanelContainer>
+    <div className={styles.panelContainer}>
       <Header />
       {panelOpened && PanelView}
-    </PanelContainer>
+    </div>
   );
 }

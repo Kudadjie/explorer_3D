@@ -1,8 +1,6 @@
 "use client";
 import styles from "./styles.module.scss";
-import MobileView from "@/components/MobileView";
 import MenuBar from "@/components/MenuBar";
-import useIsMobileDevice from "@/lib/hooks/useIsMobileDevice";
 import Panel from "@/components/Panel";
 import Modal from "@/components/Modal";
 import Acknowledgement from "@/components/Acknowledgement";
@@ -15,12 +13,14 @@ const lato = Lato({
 });
 
 export default function InteractiveViewer() {
-  const { isMobile } = useIsMobileDevice();
   const { modalOpened } = useAppStore((state) => ({
     modalOpened: state.acknowledgementModal.open,
   }));
-  const pageContent = (
+
+  return (
+    //TODO - Implement notification for adjusting zoom on device when layout looks off.
     <div className={styles.canvasBackdrop + " " + lato.className}>
+      {/* Implement portal? */}
       {modalOpened && (
         <Modal>
           <Acknowledgement />
@@ -29,9 +29,6 @@ export default function InteractiveViewer() {
       <canvas className={styles.canvas} onClick={() => {}}></canvas>
       <MenuBar />
       <Panel />
-      {/* <Toolbar /> */}
     </div>
   );
-  //render page or invalid screen size page
-  return <>{isMobile ? <MobileView /> : pageContent}</>;
 }
