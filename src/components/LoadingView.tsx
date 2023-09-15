@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import logo from "../../public/assets/logo/logo.svg";
-import Loading from "./Loading";
+import Tetromino from "./Tetromino";
 import styles from "./LoadingView.module.scss";
 import { useRouter } from "next/navigation";
 
@@ -36,7 +36,7 @@ export default function LoadingView() {
       />
 
       <div className={styles.loadingAnimationBox}>
-        <Loading />
+        <Tetromino />
       </div>
       <div className={styles.loadingStatusSection}>
         <p className={styles.loading} style={{ fontWeight: "bolder" }}>

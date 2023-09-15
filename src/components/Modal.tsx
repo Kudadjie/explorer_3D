@@ -1,13 +1,14 @@
 import React from "react";
-import Draggable from "react-draggable";
 import styles from "./Modal.module.scss";
-type ModalTypes = {
+type ModalProps = {
   children: React.ReactNode;
 };
-export const Modal: React.FC<ModalTypes> = ({ children }) => {
+const Modal: React.FC<ModalProps> = ({ children }) => {
   return (
-    <Draggable bounds="parent">
-      <div className={styles.Modal}>{children}</div>
-    </Draggable>
+    <div className={styles.modalBackground}>
+      <div className={styles.modal}>{children}</div>
+    </div>
   );
 };
+
+export default Modal;

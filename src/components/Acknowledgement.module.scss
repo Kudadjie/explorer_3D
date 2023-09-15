@@ -1,0 +1,86 @@
+.textSection {
+  width: 0;
+  height: 620px;
+  display: flex;
+  flex-direction: column;
+
+  & :first-child {
+    align-self: flex-end;
+    margin: 15px;
+    text-decoration: underline;
+    cursor: pointer;
+    &:hover {
+      color: rgb(232 36 36);
+    }
+  }
+
+  & :nth-child(2) {
+    margin: 0 35px;
+    position: absolute;
+    display: none;
+  }
+
+  & :nth-child(3) {
+    margin: 25px 35px;
+    line-height: 1.5;
+    text-align: justify;
+    overflow: hidden;
+
+    &:hover {
+      overflow-y: scroll;
+      &::-webkit-scrollbar {
+        position: absolute;
+        width: 10px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        position: absolute;
+        background-color: #d2d0d0;
+        border-radius: 10px;
+      }
+    }
+  }
+}
+
+.thanksImage {
+  width: 0;
+  height: 0;
+}
+
+//tablet
+@media screen and (min-width: 426px) and (max-width: 1200px) {
+  .textSection {
+    width: 420px;
+    //same as image height
+    height: 480px;
+
+    & :nth-child(2) {
+      position: initial;
+      display: block;
+    }
+  }
+
+  .thanksImage {
+    width: 340px;
+    height: 480px;
+  }
+}
+
+//Desktop
+@media screen and (min-width: 1200px) {
+  .textSection {
+    width: 450px;
+    //same as image height
+    height: 620px;
+
+    & :nth-child(2) {
+      position: initial;
+      display: block;
+    }
+  }
+
+  .thanksImage {
+    width: 480px;
+    height: 620px;
+  }
+}

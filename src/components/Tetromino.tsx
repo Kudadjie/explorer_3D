@@ -1,5 +1,5 @@
-import styles from "./loading.module.scss";
-export default function Loading() {
+import styles from "./Tetromino.module.scss";
+export default function Tetromino() {
   return (
     <div className={styles.tetrominos}>
       <div className={styles.box1}></div>

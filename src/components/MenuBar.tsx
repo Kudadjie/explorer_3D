@@ -1,10 +1,11 @@
 "use client";
 import styles from "./MenuBar.module.scss";
-import "./menu.scss";
+import "./HamburgerMenu.scss";
 import logo from "../../public/assets/logo/logo_dm.svg";
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { CSSTransition } from "react-transition-group";
+import { useAppStore } from "@/store/useAppStore";
 
 export default function MenuBar() {
   return (
@@ -29,6 +30,7 @@ interface DropdownMenuTypes {
   goToMenu?: string;
   icon?: React.ReactNode;
   children: React.ReactNode;
+  typeOfMenuItem?: string;
 }
 
 const Navbar: React.FC<NavbarTypes> = ({ children }) => {
@@ -65,7 +67,9 @@ const NavItem: React.FC<NavItemTypes> = ({ children }) => {
 const DropdownMenu = () => {
   const [activeMenu, setActiveMenu] = useState("main");
   const dropdownRef = useRef<HTMLDivElement>(null);
-
+  const { toggleAcknowledgementModal } = useAppStore((state) => ({
+    toggleAcknowledgementModal: state.toggleAcknowledgementModal,
+  }));
   const backArrow = (
     <i className="fa-solid fa-arrow-left-long" style={{ color: "#ffffff" }}></i>
   );
@@ -104,11 +108,17 @@ const DropdownMenu = () => {
     goToMenu,
     children,
     icon,
+    typeOfMenuItem,
   }) => {
     return (
       <p
         className={styles.dropdownMenuOption}
-        onClick={() => goToMenu && setActiveMenu(goToMenu)}
+        onClick={() => {
+          goToMenu && setActiveMenu(goToMenu);
+          if (typeOfMenuItem === "acknowledgement") {
+            toggleAcknowledgementModal();
+          }
+        }}
       >
         {icon}
         {children}
@@ -133,7 +143,9 @@ const DropdownMenu = () => {
             Features and Structures
           </DropdownItem>
           <hr></hr>
-          <DropdownItem icon={acknowledgement}>Acknowledgement</DropdownItem>
+          <DropdownItem icon={acknowledgement} typeOfMenuItem="acknowledgement">
+            Acknowledgement
+          </DropdownItem>
           <hr></hr>
           <Navfoot>Main Menu</Navfoot>
         </div>

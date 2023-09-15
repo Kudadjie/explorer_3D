@@ -1,18 +1,14 @@
-.Modal {
-  width: 350px;
-  height: fit-content;
-  background-color: white;
-  display: flex;
-  justify-self: flex-end;
-  grid-row: 1/1;
-  align-self: flex-start;
-  margin: 35px;
-  z-index: 9000000000000;
-  transition: all 5ms ease-in-out;
-  box-shadow: rgb(210, 210, 210) 0px 4px 6px;
-}
-
-.modalInactive {
+.modalBackground {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.518);
   position: absolute;
-  left: 100000px;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .modal {
+    background-color: white;
+  }
 }

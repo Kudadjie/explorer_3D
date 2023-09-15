@@ -3,21 +3,32 @@ import styles from "./styles.module.scss";
 import MobileView from "@/components/MobileView";
 import MenuBar from "@/components/MenuBar";
 import useIsMobileDevice from "@/lib/hooks/useIsMobileDevice";
-import Toolbar from "@/components/Toolbar";
+import Panel from "@/components/Panel";
+import Modal from "@/components/Modal";
+import Acknowledgement from "@/components/Acknowledgement";
 import { useAppStore } from "@/store/useAppStore";
-import CurrentPinPanel from "@/components/CurrentPinPanel";
+import { Lato } from "next/font/google";
+
+const lato = Lato({
+  weight: ["100", "300", "400", "700", "900"],
+  subsets: ["latin"],
+});
 
 export default function InteractiveViewer() {
   const { isMobile } = useIsMobileDevice();
-  // const { currentPin } = useAppStore((state) => ({
-  //   currentPin: state.currentPin.open,
-  // }));
-
+  const { modalOpened } = useAppStore((state) => ({
+    modalOpened: state.acknowledgementModal.open,
+  }));
   const pageContent = (
-    <div className={styles.canvasBackdrop}>
+    <div className={styles.canvasBackdrop + " " + lato.className}>
+      {modalOpened && (
+        <Modal>
+          <Acknowledgement />
+        </Modal>
+      )}
       <canvas className={styles.canvas} onClick={() => {}}></canvas>
       <MenuBar />
-      <CurrentPinPanel />
+      <Panel />
       {/* <Toolbar /> */}
     </div>
   );

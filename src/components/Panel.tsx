@@ -1,21 +1,30 @@
 "use client";
-import React, { useState, useRef } from "react";
-import { Modal } from "./Modal";
-import styles from "./CurrentPinPanel.module.scss";
+import React, { useState } from "react";
+import styles from "./Panel.module.scss";
 import { useAppStore } from "@/store/useAppStore";
-import PanelItem from "./PanelItem";
+import Draggable from "react-draggable";
 
-function CurrentPinPanel() {
-  const { toggleCurrentPin, PanelContent, Panel } = useAppStore((state) => ({
-    toggleCurrentPin: state.toggleCurrentPin,
-    PanelContent: state.currentPin.content,
-    Panel: state.currentPin.open,
-  }));
+//types
+type PanelContainerProps = {
+  children: React.ReactNode;
+};
+
+//components
+export default function Panel() {
+  const { toggleCurrentPin, PanelContent, panelOpened } = useAppStore(
+    (state) => ({
+      toggleCurrentPin: state.toggleCurrentPin,
+      PanelContent: state.currentPin.content,
+      panelOpened: state.currentPin.open,
+    })
+  );
 
   const [togglePanelIcon, setTogglePanelIcon] = useState({
     open: true,
     class: "fa-rotate-270",
   });
+
+  const hasContent = PanelContent ? true : false;
 
   // const PanelItemTag = () => {
   //   return (
@@ -53,7 +62,6 @@ function CurrentPinPanel() {
       </div>
     );
   };
-
   const EmptyPanel = () => {
     return (
       <div className={styles.emptyPanel}>
@@ -68,17 +76,35 @@ function CurrentPinPanel() {
       </div>
     );
   };
-
-  const PanelView = PanelContent ? <PanelItem /> : <EmptyPanel />;
+  const PanelContainer: React.FC<PanelContainerProps> = ({ children }) => {
+    return (
+      <Draggable bounds="parent">
+        <div className={styles.panelContainer}>{children}</div>
+      </Draggable>
+    );
+  };
+  const PanelItem = () => {
+    const { PanelContent } = useAppStore((state) => ({
+      PanelContent: state.currentPin.content,
+    }));
+    return (
+      <div
+        //Add if more content
+        //   style={{ overflowY: "scroll", scrollbarWidth: "thin" }}
+        className={styles.PanelItemContainer}
+      >
+        <div className={styles.PanelText}>
+          <p>{PanelContent}</p>
+        </div>
+      </div>
+    );
+  };
+  const PanelView = hasContent ? <PanelItem /> : <EmptyPanel />;
 
   return (
-    <Modal>
-      <div className={styles.panelContainer}>
-        <Header />
-        {Panel && PanelView}
-      </div>
-    </Modal>
+    <PanelContainer>
+      <Header />
+      {panelOpened && PanelView}
+    </PanelContainer>
   );
 }
-
-export default CurrentPinPanel;
