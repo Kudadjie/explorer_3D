@@ -23,7 +23,7 @@ export default function LoadingView() {
     setCompleted(true);
     setTimeout(() => {
       setOpeningProject(true);
-      router.push("/interactive-viewer");
+      // router.push("/interactive-viewer");
     }, 8000);
   }
   return (
