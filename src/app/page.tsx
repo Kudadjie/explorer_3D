@@ -1,7 +1,7 @@
 import styles from "./styles.module.scss";
 import React from "react";
 import LoadingView from "@/components/LoadingView";
-import background from "../../public/assets/Hero and Backdrop/home_background.png";
+import background from "../../public/assets/Hero and Backdrop/home_background_min.png";
 import Image from "next/image";
 
 export default function Home() {
