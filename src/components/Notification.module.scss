@@ -1,0 +1,83 @@
+$border-radius-value: 7px;
+
+.notification {
+  display: flex;
+  width: 300px;
+  height: 70px;
+  margin: 50px;
+  z-index: 5;
+  box-shadow: rgb(210, 210, 210) 0px 4px 6px;
+  border-radius: $border-radius-value;
+
+  .colorBar {
+    width: 5%;
+    border-top-left-radius: $border-radius-value;
+    border-bottom-left-radius: $border-radius-value;
+  }
+  .iconAndText {
+    background-color: white;
+    width: 95%;
+    border-top-right-radius: $border-radius-value;
+    border-bottom-right-radius: $border-radius-value;
+    display: flex;
+
+    .icon {
+      color: #2f86eb;
+      position: relative;
+      top: 26px;
+      margin: 0 20px;
+      font-size: 15px;
+    }
+    .closeBtn {
+      width: 100%;
+      text-align: end;
+      padding: 10px 15px 0 0;
+      font-size: 14px;
+      text-decoration: underline;
+      cursor: pointer;
+
+      &:hover {
+        color: rgb(232 36 36);
+      }
+    }
+  }
+
+  .content {
+    color: rgb(16 16 32);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    font-size: small;
+  }
+}
+
+.fadeIn {
+  animation: fadeIn 2s 1 alternate ease-in-out;
+  animation-fill-mode: forwards;
+}
+.fadeOut {
+  animation: fadeOut 2s 1 alternate ease-in-out;
+  animation-fill-mode: forwards;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+    display: initial;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    display: none;
+  }
+}
