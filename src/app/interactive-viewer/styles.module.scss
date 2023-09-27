@@ -6,6 +6,10 @@
   display: grid;
   align-items: flex-start;
 
+  .modalContainer {
+    position: absolute;
+  }
+
   .canvas {
     position: absolute;
     width: 100vw;

@@ -1,5 +1,7 @@
+"use client";
 import React from "react";
 import style from "./Notification.module.scss";
+import { useInteractiveViewerStore } from "@/store/useInteractiveViewerStore";
 // blue(info) - rgb(47 134 235)
 // red(error) - rgb(255 53 91)
 // yellow(warning) - rgb(255 192 33)
@@ -22,6 +24,10 @@ const Notification: React.FC<NotificationProps> = ({
   color,
   icon,
 }) => {
+  const { toggleNotification } = useInteractiveViewerStore((state) => ({
+    toggleNotification: state.toggleNotification,
+  }));
+
   return (
     <div className={style.notification}>
       {/* colorbar */}
@@ -36,7 +42,15 @@ const Notification: React.FC<NotificationProps> = ({
           {/* content */}
           <span>{children}</span>
         </div>
-        <p className={style.closeBtn}>close</p>
+        <p
+          className={style.closeBtn}
+          onClick={() => {
+            toggleNotification(null, null);
+            console.log("here");
+          }}
+        >
+          close
+        </p>
       </div>
     </div>
   );

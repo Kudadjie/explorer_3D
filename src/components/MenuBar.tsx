@@ -5,12 +5,12 @@ import logo from "../../public/assets/logo/logo_dm.svg";
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { CSSTransition } from "react-transition-group";
-import { useAppStore } from "@/store/useAppStore";
+import { useInteractiveViewerStore } from "@/store/useInteractiveViewerStore";
 
 export default function MenuBar() {
   return (
     <Navbar>
-      <Image className={styles.logo} src={logo} alt="logo" />
+      <Image className={styles.logo} src={logo} alt="logo" priority />
       <NavItem>
         <DropdownMenu></DropdownMenu>
       </NavItem>
@@ -67,7 +67,7 @@ const NavItem: React.FC<NavItemTypes> = ({ children }) => {
 const DropdownMenu = () => {
   const [activeMenu, setActiveMenu] = useState("main");
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const { toggleAcknowledgementModal } = useAppStore((state) => ({
+  const { toggleAcknowledgementModal } = useInteractiveViewerStore((state) => ({
     toggleAcknowledgementModal: state.toggleAcknowledgementModal,
   }));
   const backArrow = (

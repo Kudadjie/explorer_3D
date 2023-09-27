@@ -1,16 +1,20 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Panel.module.scss";
-import { useAppStore } from "@/store/useAppStore";
+import { useInteractiveViewerStore } from "@/store/useInteractiveViewerStore";
+import axios from "axios";
 
 export default function Panel() {
-  const { toggleCurrentPin, PanelContent, panelOpened } = useAppStore(
-    (state) => ({
+  const { toggleCurrentPin, PanelContent, panelOpened } =
+    useInteractiveViewerStore((state) => ({
       toggleCurrentPin: state.toggleCurrentPin,
       PanelContent: state.currentPin.content,
       panelOpened: state.currentPin.open,
-    })
-  );
+    }));
+
+  const { toggleNotification } = useInteractiveViewerStore((state) => ({
+    toggleNotification: state.toggleNotification,
+  }));
 
   const [togglePanelIcon, setTogglePanelIcon] = useState({
     open: false,
@@ -47,6 +51,14 @@ export default function Panel() {
                 open: state.open ? false : true,
               };
             });
+            // axios
+            //   .get("https://xstate.js.org/docs/s")
+            //   .then((response) => {
+            //     console.log(response);
+            //   })
+            //   .catch((error) => {
+            //     toggleNotification("Error", `${error}`);
+            //   });
           }}
         ></i>
       </div>
@@ -68,7 +80,7 @@ export default function Panel() {
   };
 
   const PanelItem = () => {
-    const { PanelContent } = useAppStore((state) => ({
+    const { PanelContent } = useInteractiveViewerStore((state) => ({
       PanelContent: state.currentPin.content,
     }));
     return (

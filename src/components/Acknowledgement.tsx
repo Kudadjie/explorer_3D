@@ -3,12 +3,14 @@ import React from "react";
 import Image from "next/image";
 import thanksImage from "../../public/assets/thanks.jpg";
 import styles from "./Acknowledgement.module.scss";
-import { useAppStore } from "@/store/useAppStore";
+import { useInteractiveViewerStore } from "@/store/useInteractiveViewerStore";
 function Acknowledgement() {
   const TextSection = () => {
-    const { toggleAcknowledgementModal } = useAppStore((state) => ({
-      toggleAcknowledgementModal: state.toggleAcknowledgementModal,
-    }));
+    const { toggleAcknowledgementModal } = useInteractiveViewerStore(
+      (state) => ({
+        toggleAcknowledgementModal: state.toggleAcknowledgementModal,
+      })
+    );
     return (
       <div className={styles.textSection}>
         {/*  */}
