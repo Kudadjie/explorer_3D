@@ -4,6 +4,7 @@ import Image from "next/image";
 import thanksImage from "../../public/assets/thanks.jpg";
 import styles from "./Acknowledgement.module.scss";
 import { useInteractiveViewerStore } from "@/store/useInteractiveViewerStore";
+
 function Acknowledgement() {
   const TextSection = () => {
     const { toggleAcknowledgementModal } = useInteractiveViewerStore(
@@ -11,6 +12,7 @@ function Acknowledgement() {
         toggleAcknowledgementModal: state.toggleAcknowledgementModal,
       })
     );
+
     return (
       <div className={styles.textSection}>
         {/*  */}
@@ -32,19 +34,7 @@ function Acknowledgement() {
           (Ghana) area.
           <br></br>
           <br></br>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti
-          vitae dignissimos reprehenderit delectus nihil ex eveniet voluptatum
-          suscipit ad doloribus officia cupiditate, rem eum placeat repellendus
-          dolorem molestias quo. Similique?
-          <br></br>
-          <br></br>
-          We would like to extend our appreciation to ourselves for successfully
-          navigating the project, which stands as a testament to an unattributed
-          quote: <br></br>
-          <em>Do Hard Things!</em>
-          <br></br>
-          <br></br>
-          <b>Team and Roles:</b>
+          <b style={{ margin: 0 }}>Team and Roles:</b>
           <br></br>Isaac Antwi - Geologist
           <a
             href="https://www.linkedin.com/in/isaac-antwi-1138171a1/"
@@ -103,7 +93,7 @@ function Acknowledgement() {
     );
   };
   return (
-    <div style={{ display: "flex" }}>
+    <div className={styles.container}>
       <Image
         src={thanksImage}
         alt="#"

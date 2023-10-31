@@ -5,6 +5,9 @@ interface InteractiveViwerState {
   acknowledgementModal: {
     open: boolean;
   };
+  downloadsModal: {
+    open: boolean;
+  };
   currentPin: {
     open: boolean;
     //refactor to how content should look content: { description: "", measurements: "", ...}?
@@ -18,6 +21,7 @@ interface InteractiveViwerState {
 
   toggleCurrentPin: () => void;
   toggleAcknowledgementModal: () => void;
+  toggleDownloadsModal: () => void;
   toggleNotification: (
     title: "Info" | "Success" | "Error" | "Warning" | null,
     content: string | null
@@ -29,8 +33,11 @@ export const useInteractiveViewerStore = create<InteractiveViwerState>()(
     acknowledgementModal: {
       open: false,
     },
-    currentPin: {
+    downloadsModal: {
       open: false,
+    },
+    currentPin: {
+      open: true,
 
       content: "",
     },
@@ -53,7 +60,12 @@ export const useInteractiveViewerStore = create<InteractiveViwerState>()(
           open: state.acknowledgementModal.open ? false : true,
         },
       })),
-
+    toggleDownloadsModal: () =>
+      set((state) => ({
+        downloadsModal: {
+          open: state.downloadsModal.open ? false : true,
+        },
+      })),
     toggleNotification: (title = null, content = null) =>
       set((state) => ({
         notification: {

@@ -67,32 +67,20 @@ const NavItem: React.FC<NavItemTypes> = ({ children }) => {
 const DropdownMenu = () => {
   const [activeMenu, setActiveMenu] = useState("main");
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const { toggleAcknowledgementModal } = useInteractiveViewerStore((state) => ({
-    toggleAcknowledgementModal: state.toggleAcknowledgementModal,
-  }));
+  const { toggleAcknowledgementModal, toggleDownloadsModal } =
+    useInteractiveViewerStore((state) => ({
+      toggleAcknowledgementModal: state.toggleAcknowledgementModal,
+      toggleDownloadsModal: state.toggleDownloadsModal,
+    }));
   const backArrow = (
     <i className="fa-solid fa-arrow-left-long" style={{ color: "#ffffff" }}></i>
-  );
-
-  const view = (
-    <i className="fa-regular fa-eye" style={{ color: " #ffffff" }}></i>
-  );
-
-  const model3d = (
-    <i className="fa-solid fa-cube" style={{ color: "#ffffff" }}></i>
-  );
-
-  const ortho = (
-    <i className="fa-solid fa-image" style={{ color: "#ffffff" }}></i>
   );
 
   const features = (
     <i className="fa-solid fa-hill-rockslide" style={{ color: " #ffffff" }}></i>
   );
 
-  const access = (
-    <i className="fa-solid fa-key" style={{ color: "#ffffff" }}></i>
-  );
+  const downloads = <i className="fa-solid fa-cloud-arrow-down"></i>;
 
   const acknowledgement = (
     <i className="fa-solid fa-user-graduate" style={{ color: "#ffffff" }}></i>
@@ -115,9 +103,9 @@ const DropdownMenu = () => {
         className={styles.dropdownMenuOption}
         onClick={() => {
           goToMenu && setActiveMenu(goToMenu);
-          if (typeOfMenuItem === "acknowledgement") {
+          if (typeOfMenuItem === "acknowledgement")
             toggleAcknowledgementModal();
-          }
+          if (typeOfMenuItem === "downloads") toggleDownloadsModal();
         }}
       >
         {icon}
@@ -135,36 +123,20 @@ const DropdownMenu = () => {
         unmountOnExit
       >
         <div className="menu">
-          <DropdownItem goToMenu="change view" icon={view}>
-            Change View
-          </DropdownItem>
-          <hr></hr>
           <DropdownItem goToMenu="features and structures" icon={features}>
             Features and Structures
+          </DropdownItem>
+          <hr></hr>
+          <DropdownItem icon={downloads} typeOfMenuItem="downloads">
+            Downloads
           </DropdownItem>
           <hr></hr>
           <DropdownItem icon={acknowledgement} typeOfMenuItem="acknowledgement">
             Acknowledgement
           </DropdownItem>
           <hr></hr>
-          <Navfoot>Main Menu</Navfoot>
-        </div>
-      </CSSTransition>
 
-      <CSSTransition
-        in={activeMenu === "change view"}
-        timeout={0}
-        classNames="menu-secondary"
-        unmountOnExit
-      >
-        <div className="menu">
-          <DropdownItem goToMenu="main" icon={backArrow}>
-            Back
-          </DropdownItem>
-          <DropdownItem icon={model3d}>3D Model</DropdownItem>
-          <DropdownItem icon={ortho}>Orthomoasic</DropdownItem>
-          <hr></hr>
-          <Navfoot>Change View</Navfoot>
+          <Navfoot>Main Menu</Navfoot>
         </div>
       </CSSTransition>
 

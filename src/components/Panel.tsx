@@ -1,8 +1,7 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "./Panel.module.scss";
 import { useInteractiveViewerStore } from "@/store/useInteractiveViewerStore";
-import axios from "axios";
 
 export default function Panel() {
   const { toggleCurrentPin, PanelContent, panelOpened } =
@@ -23,15 +22,6 @@ export default function Panel() {
 
   const hasContent = PanelContent ? true : false;
 
-  // const PanelItemTag = () => {
-  //   return (
-  //     <div className={styles.PanelItemTag}>
-  //       Pin Name
-  //       <i className="fa-solid fa-xmark" style={{ color: "#ffffff" }}></i>
-  //     </div>
-  //   );
-  // };
-
   const Header = () => {
     return (
       <div className={styles.header}>
@@ -39,7 +29,7 @@ export default function Panel() {
         {/* <PanelItemTag /> */}
         <i
           className={
-            "fa-solid fa-angles-up fa-lg " +
+            `fa-solid fa-lg fa-angles-down ` +
             (togglePanelIcon.open && togglePanelIcon.class)
           }
           style={{ color: " #ffffff" }}
@@ -51,14 +41,6 @@ export default function Panel() {
                 open: state.open ? false : true,
               };
             });
-            // axios
-            //   .get("https://xstate.js.org/docs/s")
-            //   .then((response) => {
-            //     console.log(response);
-            //   })
-            //   .catch((error) => {
-            //     toggleNotification("Error", `${error}`);
-            //   });
           }}
         ></i>
       </div>

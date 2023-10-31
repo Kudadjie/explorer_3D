@@ -64,7 +64,7 @@ const getNotification = (
           type="Warning"
           color="rgb(255 192 33)"
         >
-          <p>Test</p>
+          <p>{content}</p>
         </Notification>
       );
 

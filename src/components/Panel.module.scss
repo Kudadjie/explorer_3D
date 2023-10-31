@@ -6,23 +6,18 @@
   color: white;
   background-color: #001b35;
   align-items: center;
-  cursor: grab;
 
   & :nth-child(2) {
     cursor: pointer;
   }
 }
 
-.togglePanelIcon_close {
-  transform: rotate(270deg);
-}
-
 .panelContainer {
   width: 100vw;
   background-color: white;
   align-self: flex-end;
-  z-index: 2;
-  box-shadow: rgb(210, 210, 210) 0px 4px 6px;
+  z-index: 99;
+  box-shadow: #000000 0px 4px 6px;
 }
 
 .emptyPanel {
@@ -68,16 +63,6 @@
     text-align: justify;
     padding: 20px;
     font-size: smaller;
-  }
-}
-
-.PanelItemTag {
-  border: 1px solid white;
-  padding: 10px;
-  border-radius: 35px;
-
-  i {
-    margin-left: 10px;
   }
 }
 
