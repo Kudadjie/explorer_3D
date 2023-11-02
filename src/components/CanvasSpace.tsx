@@ -11,8 +11,8 @@ const Model = () => {
   useGLTF.preload("/model/Project.gltf");
   const { scene } = useGLTF("/model/Project.gltf");
 
-  // return <primitive object={scene} />;
-  return <div></div>;
+  return <primitive object={scene} />;
+  // return <div></div>;
 };
 
 function Loader() {
