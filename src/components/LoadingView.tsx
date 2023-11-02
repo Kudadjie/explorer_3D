@@ -31,7 +31,7 @@ export default function LoadingView() {
         ></i>
         <span className={styles.openingProject}>Opening project...</span>
         <p style={{ fontSize: "smaller" }}>
-          This may take awhile depending on your internet speed.
+          <em>This may take awhile depending on your internet speed.</em>
         </p>
       </div>
     </>

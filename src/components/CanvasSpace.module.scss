@@ -1,11 +1,18 @@
 .loadingModelContainer {
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.726);
+  background-color: rgba(0, 0, 0, 0.912);
   position: absolute;
   z-index: 100;
   display: flex;
   padding-left: 20px;
   justify-content: center;
   align-items: center;
+}
+
+.bar {
+  width: 2px;
+  height: 30px;
+  background-color: white;
+  margin: 20px;
 }

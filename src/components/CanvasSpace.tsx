@@ -8,8 +8,8 @@ import Tetromino from "./Tetromino";
 import styles from "./CanvasSpace.module.scss";
 
 const Model = () => {
-  // useGLTF.preload("/model/model_reduced.glb");
-  // // const { scene } = useGLTF("/model/model_reduced.glb");
+  // useGLTF.preload("/model/Project.gltf");
+  // const { scene } = useGLTF("/model/Project.gltf");
 
   // // console.log(scene);
   // // //don't put model in scene, yet.
@@ -25,11 +25,14 @@ function Loader() {
       {!errors[0] && (
         <>
           <Tetromino />
-          <p style={{ marginTop: "170px", color: "white", width: "50vw" }}>
+          <p style={{ marginTop: "270px", color: "white", width: "50vw" }}>
             Loading 3D Model...
-          </p>
-          <p style={{ fontSize: "smaller" }}>
-            This may take awhile depending on your internet speed.
+            <br></br>
+            <br></br>
+            <em>
+              This may take awhile depending on your internet speed as the model
+              is well over 100MB.
+            </em>
           </p>
         </>
       )}
