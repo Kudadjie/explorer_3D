@@ -8,8 +8,8 @@ import Tetromino from "./Tetromino";
 import styles from "./CanvasSpace.module.scss";
 
 const Model = () => {
-  useGLTF.preload("/model/Project.gltf");
-  const { scene } = useGLTF("/model/Project.gltf");
+  useGLTF.preload("/model/final_model.gltf");
+  const { scene } = useGLTF("/model/final_model.gltf");
 
   return <primitive object={scene} />;
   // return <div></div>;
