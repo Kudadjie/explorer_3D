@@ -1,5 +1,5 @@
 "use client";
-import { Suspense } from "react";
+import { Suspense, lazy } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { useGLTF } from "@react-three/drei";
@@ -7,13 +7,7 @@ import { Html, useProgress } from "@react-three/drei";
 import Tetromino from "./Tetromino";
 import styles from "./CanvasSpace.module.scss";
 
-const Model = () => {
-  useGLTF.preload("/model/final_model.gltf");
-  const { scene } = useGLTF("/model/final_model.gltf");
-
-  return <primitive object={scene} />;
-  // return <div></div>;
-};
+const ModelComponent = lazy(() => import("./Model"));
 
 function Loader() {
   const { active, progress, errors, item, loaded, total } = useProgress();
@@ -54,10 +48,10 @@ function Loader() {
 
 function CanvasSpace() {
   return (
-    <Canvas>
+    <Canvas camera={{ position: [1, 1, 1] }}>
       <Suspense fallback={<Loader />}>
         <directionalLight />
-        <Model />
+        <ModelComponent />
         <OrbitControls />
       </Suspense>
     </Canvas>
