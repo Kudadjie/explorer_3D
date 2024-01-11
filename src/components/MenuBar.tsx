@@ -67,20 +67,15 @@ const NavItem: React.FC<NavItemTypes> = ({ children }) => {
 const DropdownMenu = () => {
   const [activeMenu, setActiveMenu] = useState("main");
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const { toggleAcknowledgementModal, toggleDownloadsModal } =
+  const { toggleAcknowledgementModal, toggleAboutModal } =
     useInteractiveViewerStore((state) => ({
       toggleAcknowledgementModal: state.toggleAcknowledgementModal,
-      toggleDownloadsModal: state.toggleDownloadsModal,
+      toggleAboutModal: state.toggleAboutModal,
     }));
-  const backArrow = (
-    <i className="fa-solid fa-arrow-left-long" style={{ color: "#ffffff" }}></i>
-  );
 
-  const features = (
-    <i className="fa-solid fa-hill-rockslide" style={{ color: " #ffffff" }}></i>
-  );
+  const agisoft = <i className="fa-solid fa-up-right-from-square"></i>;
 
-  const downloads = <i className="fa-solid fa-cloud-arrow-down"></i>;
+  const about = <i className="fa-solid fa-question"></i>;
 
   const acknowledgement = (
     <i className="fa-solid fa-user-graduate" style={{ color: "#ffffff" }}></i>
@@ -105,7 +100,7 @@ const DropdownMenu = () => {
           goToMenu && setActiveMenu(goToMenu);
           if (typeOfMenuItem === "acknowledgement")
             toggleAcknowledgementModal();
-          if (typeOfMenuItem === "downloads") toggleDownloadsModal();
+          if (typeOfMenuItem === "about") toggleAboutModal();
         }}
       >
         {icon}
@@ -123,12 +118,18 @@ const DropdownMenu = () => {
         unmountOnExit
       >
         <div className="menu">
-          <DropdownItem goToMenu="features and structures" icon={features}>
-            Features and Structures
+          <DropdownItem icon={about} typeOfMenuItem="about">
+            About the Project
           </DropdownItem>
           <hr></hr>
-          <DropdownItem icon={downloads} typeOfMenuItem="downloads">
-            Downloads
+          <DropdownItem icon={agisoft}>
+            <a
+              href="https://cloud.agisoft.com/shared/projects/fefd73ca-1758-4758-9de2-bcf7f6259575"
+              target="blank"
+              style={{ textDecoration: "none", color: "white" }}
+            >
+              View Project - Agisoft Cloud{" "}
+            </a>
           </DropdownItem>
           <hr></hr>
           <DropdownItem icon={acknowledgement} typeOfMenuItem="acknowledgement">
@@ -137,25 +138,6 @@ const DropdownMenu = () => {
           <hr></hr>
 
           <Navfoot>Main Menu</Navfoot>
-        </div>
-      </CSSTransition>
-
-      <CSSTransition
-        in={activeMenu === "features and structures"}
-        timeout={0}
-        classNames="menu-secondary"
-        unmountOnExit
-      >
-        <div className="menu">
-          <DropdownItem goToMenu="main" icon={backArrow}>
-            Back
-          </DropdownItem>
-          <DropdownItem>Placeholder</DropdownItem>
-          <DropdownItem>Placeholder</DropdownItem>
-          <DropdownItem>Placeholder</DropdownItem>
-          <DropdownItem>Placeholder</DropdownItem>
-          <hr></hr>
-          <Navfoot>Features and Structures</Navfoot>
         </div>
       </CSSTransition>
     </div>

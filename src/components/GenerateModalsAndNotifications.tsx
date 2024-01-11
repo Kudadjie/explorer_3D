@@ -1,18 +1,15 @@
 "use client";
-import getNotification from "@/lib/getNotification";
 import { useInteractiveViewerStore } from "@/store/useInteractiveViewerStore";
 import React from "react";
 import Acknowledgement from "./Acknowledgement";
 import Modal from "./Modal";
-import Downloads from "./Downloads";
+import About from "./About";
 
 const GenerateModalsAndNotifications = () => {
-  const { acknowledgementModalOpened, title, content, downloadsModalOpened } =
+  const { acknowledgementModalOpened, aboutModalOpened } =
     useInteractiveViewerStore((state) => ({
-      downloadsModalOpened: state.downloadsModal.open,
       acknowledgementModalOpened: state.acknowledgementModal.open,
-      title: state.notification.title,
-      content: state.notification.content,
+      aboutModalOpened: state.aboutModal.open,
     }));
 
   return (
@@ -23,10 +20,11 @@ const GenerateModalsAndNotifications = () => {
           <Acknowledgement />
         </Modal>
       )}
-      {downloadsModalOpened && <Downloads />}
-      {/*Notifications */}
-      {/* Notifications have to be manually closed */}
-      {getNotification(title, content)}
+      {aboutModalOpened && (
+        <Modal>
+          <About />
+        </Modal>
+      )}
     </>
   );
 };
