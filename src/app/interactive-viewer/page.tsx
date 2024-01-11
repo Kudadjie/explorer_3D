@@ -2,7 +2,6 @@ import styles from "./styles.module.scss";
 import MenuBar from "@/components/MenuBar";
 import { Lato } from "next/font/google";
 import GenerateModalsAndNotifications from "@/components/GenerateModalsAndNotifications";
-import CanvasSpace from "@/components/CanvasSpace";
 import ProjectHaltNotice from "@/components/ProjectHaltNotice";
 
 const lato = Lato({
