@@ -1,6 +1,6 @@
 .container {
   display: flex;
-  background-image: url("../../public/assets/Hero\ and\ Backdrop/backdrop.png");
+  background-image: url("../../public/assets/Hero\ and\ Backdrop/canvas_bd_w.png");
   background-size: cover;
   background-color: black;
 }
@@ -9,7 +9,6 @@
   height: 620px;
   display: flex;
   flex-direction: column;
-  color: white;
 
   & :first-child {
     align-self: flex-end;
@@ -49,7 +48,7 @@
 
     &::-webkit-scrollbar-thumb {
       border-radius: 8px;
-      background-color: #1e2429;
+      background-color: #5b5b5b;
     }
   }
 }

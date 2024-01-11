@@ -1,13 +1,12 @@
 import React from "react";
 import styles from "./ProjectHaltNotice.module.scss";
+import Image from "next/image";
+import image from "../../public/assets/error_2.svg";
 
 function ProjectHaltNotice() {
   return (
     <div className={styles.container}>
-      <i
-        className="fa-solid fa-flask-vial fa-2xl"
-        style={{ color: "#d5ebff", fontSize: "10em" }}
-      ></i>
+      <Image src={image} alt="#" style={{ width: "30vw", height: "30vh" }} />
       <p>Something awesome was supposed to be here...</p>
     </div>
   );
