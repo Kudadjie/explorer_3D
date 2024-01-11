@@ -1,30 +1,20 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import logo from "../../public/assets/logo/logo.svg";
-import Tetromino from "./Tetromino";
 import styles from "./LoadingView.module.scss";
 import { useRouter } from "next/navigation";
 
 export default function LoadingView() {
-  const [loading, setLoading] = useState(0);
-  const [completed, setCompleted] = useState(false);
-  const [openingProject, setOpeningProject] = useState(false);
-
   const router = useRouter();
-  //Simulate loading...
 
+  //wait for nice background to load :)
   setTimeout(() => {
-    setLoading(100);
-    triggerLoadingStatusNotification();
-  }, 5000);
+    redirect();
+  }, 7000);
 
-  function triggerLoadingStatusNotification() {
-    setCompleted(true);
-    setTimeout(() => {
-      setOpeningProject(true);
-      router.push("/interactive-viewer");
-    }, 8000);
+  function redirect() {
+    router.push("/interactive-viewer");
   }
   return (
     <>
@@ -34,26 +24,15 @@ export default function LoadingView() {
         alt="3d explorer logo"
         priority
       />
-
-      <div className={styles.loadingAnimationBox}>
-        <Tetromino />
-      </div>
-      <div className={styles.loadingStatusSection}>
-        <p className={styles.loading} style={{ fontWeight: "bolder" }}>
-          Loading - {loading}%
+      <div>
+        <i
+          className="fa-solid fa-circle-check"
+          style={{ color: "#22e614", marginRight: "10px" }}
+        ></i>
+        <span className={styles.openingProject}>Opening project...</span>
+        <p style={{ fontSize: "smaller" }}>
+          <em>This may take awhile depending on your internet speed.</em>
         </p>
-        {completed && (
-          <p className={styles.completed}>
-            Completed{" "}
-            <i
-              className="fa-solid fa-circle-check"
-              style={{ color: "#22e614" }}
-            ></i>
-          </p>
-        )}
-        {openingProject && (
-          <p className={styles.openingProject}>Opening project...</p>
-        )}
       </div>
     </>
   );

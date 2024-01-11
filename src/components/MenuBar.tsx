@@ -5,12 +5,12 @@ import logo from "../../public/assets/logo/logo_dm.svg";
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { CSSTransition } from "react-transition-group";
-import { useAppStore } from "@/store/useAppStore";
+import { useInteractiveViewerStore } from "@/store/useInteractiveViewerStore";
 
 export default function MenuBar() {
   return (
     <Navbar>
-      <Image className={styles.logo} src={logo} alt="logo" />
+      <Image className={styles.logo} src={logo} alt="logo" priority />
       <NavItem>
         <DropdownMenu></DropdownMenu>
       </NavItem>
@@ -67,32 +67,15 @@ const NavItem: React.FC<NavItemTypes> = ({ children }) => {
 const DropdownMenu = () => {
   const [activeMenu, setActiveMenu] = useState("main");
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const { toggleAcknowledgementModal } = useAppStore((state) => ({
-    toggleAcknowledgementModal: state.toggleAcknowledgementModal,
-  }));
-  const backArrow = (
-    <i className="fa-solid fa-arrow-left-long" style={{ color: "#ffffff" }}></i>
-  );
+  const { toggleAcknowledgementModal, toggleAboutModal } =
+    useInteractiveViewerStore((state) => ({
+      toggleAcknowledgementModal: state.toggleAcknowledgementModal,
+      toggleAboutModal: state.toggleAboutModal,
+    }));
 
-  const view = (
-    <i className="fa-regular fa-eye" style={{ color: " #ffffff" }}></i>
-  );
+  const agisoft = <i className="fa-solid fa-up-right-from-square"></i>;
 
-  const model3d = (
-    <i className="fa-solid fa-cube" style={{ color: "#ffffff" }}></i>
-  );
-
-  const ortho = (
-    <i className="fa-solid fa-image" style={{ color: "#ffffff" }}></i>
-  );
-
-  const features = (
-    <i className="fa-solid fa-hill-rockslide" style={{ color: " #ffffff" }}></i>
-  );
-
-  const access = (
-    <i className="fa-solid fa-key" style={{ color: "#ffffff" }}></i>
-  );
+  const about = <i className="fa-solid fa-question"></i>;
 
   const acknowledgement = (
     <i className="fa-solid fa-user-graduate" style={{ color: "#ffffff" }}></i>
@@ -115,9 +98,9 @@ const DropdownMenu = () => {
         className={styles.dropdownMenuOption}
         onClick={() => {
           goToMenu && setActiveMenu(goToMenu);
-          if (typeOfMenuItem === "acknowledgement") {
+          if (typeOfMenuItem === "acknowledgement")
             toggleAcknowledgementModal();
-          }
+          if (typeOfMenuItem === "about") toggleAboutModal();
         }}
       >
         {icon}
@@ -135,55 +118,26 @@ const DropdownMenu = () => {
         unmountOnExit
       >
         <div className="menu">
-          <DropdownItem goToMenu="change view" icon={view}>
-            Change View
+          <DropdownItem icon={about} typeOfMenuItem="about">
+            About the Project
           </DropdownItem>
           <hr></hr>
-          <DropdownItem goToMenu="features and structures" icon={features}>
-            Features and Structures
+          <DropdownItem icon={agisoft}>
+            <a
+              href="https://cloud.agisoft.com/shared/projects/fefd73ca-1758-4758-9de2-bcf7f6259575"
+              target="blank"
+              style={{ textDecoration: "none", color: "white" }}
+            >
+              View Project - Agisoft Cloud{" "}
+            </a>
           </DropdownItem>
           <hr></hr>
           <DropdownItem icon={acknowledgement} typeOfMenuItem="acknowledgement">
             Acknowledgement
           </DropdownItem>
           <hr></hr>
+
           <Navfoot>Main Menu</Navfoot>
-        </div>
-      </CSSTransition>
-
-      <CSSTransition
-        in={activeMenu === "change view"}
-        timeout={0}
-        classNames="menu-secondary"
-        unmountOnExit
-      >
-        <div className="menu">
-          <DropdownItem goToMenu="main" icon={backArrow}>
-            Back
-          </DropdownItem>
-          <DropdownItem icon={model3d}>3D Model</DropdownItem>
-          <DropdownItem icon={ortho}>Orthomoasic</DropdownItem>
-          <hr></hr>
-          <Navfoot>Change View</Navfoot>
-        </div>
-      </CSSTransition>
-
-      <CSSTransition
-        in={activeMenu === "features and structures"}
-        timeout={0}
-        classNames="menu-secondary"
-        unmountOnExit
-      >
-        <div className="menu">
-          <DropdownItem goToMenu="main" icon={backArrow}>
-            Back
-          </DropdownItem>
-          <DropdownItem>Placeholder</DropdownItem>
-          <DropdownItem>Placeholder</DropdownItem>
-          <DropdownItem>Placeholder</DropdownItem>
-          <DropdownItem>Placeholder</DropdownItem>
-          <hr></hr>
-          <Navfoot>Features and Structures</Navfoot>
         </div>
       </CSSTransition>
     </div>

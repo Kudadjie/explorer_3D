@@ -4,7 +4,6 @@
     list-style: none;
     width: 100vw;
     background-color: #001b35;
-    box-shadow: 0px 4px 6px #d2d2d2;
     position: fixed;
     z-index: 2;
     padding: 10px;
@@ -25,7 +24,7 @@
   position: absolute;
   top: 60px;
   border-radius: 5px;
-  box-shadow: 0px 4px 6px #d2d2d2;
+
   left: 10px;
 
   transition: height 0.5ms ease;
@@ -88,8 +87,8 @@
   padding: 5px;
 }
 
-//tablet
-@media screen and (min-width: 426px) and (max-width: 1200px) {
+//mixin for similar styles for tablet and desktop
+@mixin similarStyles {
   .toolbar {
     ul {
       width: 260px;
@@ -98,28 +97,25 @@
       margin: 30px;
       gap: 92px;
       justify-content: initial;
+      box-shadow: 0px 4px 6px #000000;
 
       &:hover {
         transform: translateX(5px);
       }
     }
   }
+
+  .dropdown {
+    box-shadow: 0px 4px 6px #000000;
+  }
+}
+
+//tablet
+@media screen and (min-width: 700px) and (max-width: 1200px) {
+  @include similarStyles();
 }
 
 //Desktop
 @media screen and (min-width: 1200px) {
-  .toolbar {
-    ul {
-      width: 260px;
-      border-radius: 30px;
-      transition: all 0.5s;
-      margin: 30px;
-      gap: 92px;
-      justify-content: initial;
-
-      &:hover {
-        transform: translateX(5px);
-      }
-    }
-  }
+  @include similarStyles();
 }
